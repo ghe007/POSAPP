@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StockActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/yello"
+        android:gravity="center"
+
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="المخزون"
+            android:textSize="@dimen/addproduct_textview_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/stock_toolbar_back_icon"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="@dimen/addproduct_back_icon_marginStart"
+            android:layout_marginEnd="@dimen/addproduct_back_icon_marginend"
+            android:background="@drawable/back_btn_addproduct"
+            android:clickable="true"
+            android:drawableStart="@drawable/back_icon"
+            android:text="" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+
+
+    <RelativeLayout
+        android:background="@drawable/addproduct_shape_bg"
+        android:layout_margin="@dimen/addproduct_cordonator_linear_paddin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <RelativeLayout
+            android:background="@drawable/shape_sell_linrear_informations"
+            android:id="@+id/relative_colmn_name"
+           android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+<TextView
+    android:layout_alignParentStart="true"
+    android:id="@+id/name"
+    android:text="المنتج"
+    android:layout_marginStart="35dp"
+    android:layout_gravity="center_vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+
+            <TextView
+
+                android:id="@+id/price_of_buy"
+                android:layout_toStartOf="@id/price_of_sell"
+                android:text="سعر الشراء"
+                android:layout_marginEnd="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="95dp"
+                android:id="@+id/price_of_sell"
+                android:text="سعر البيع"
+
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginEnd="20dp"
+                android:id="@+id/quantity"
+                android:text="الكمية"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/products_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_below="@id/relative_colmn_name"
+            android:padding="@dimen/stock_recyclerview_padding" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

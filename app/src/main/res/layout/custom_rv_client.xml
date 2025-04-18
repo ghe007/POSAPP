@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/client_custom_layout"
+   android:layout_marginVertical="10dp"
+    android:background="@drawable/shape_cardview"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:background="@drawable/stock_rv_items_shape"
+            android:id="@+id/fullname_client"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_alignParentStart="true"
+             android:layout_marginStart="5dp"
+            android:layout_marginEnd="2dp"
+            android:layout_toStartOf="@id/phone_client"
+            android:text="عبد الرحيم غنايم"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/phone_client"
+            android:layout_width="95dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="3dp"
+android:layout_toStartOf="@id/store_client"
+            android:background="@drawable/stock_rv_items_shape"
+            android:gravity="center_vertical"
+            android:text="06 66666666"
+
+            android:textDirection="ltr"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/store_client"
+
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:background="@drawable/stock_rv_items_shape"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+
+            android:text="محل فوزي الزين حاسي خليفة"
+            android:textSize="@dimen/text_size"
+            />
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

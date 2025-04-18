@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+     <color name="yello">#edca4a</color>
+      <color name="stock_rv_item">#19a836</color>
+    <color name="semi_yello">#90edca4a</color>
+    <color name="red">#F03B3B</color>
+</resources>

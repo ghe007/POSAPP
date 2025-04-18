@@ -1,0 +1,13 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_size">15sp</dimen>
+    <dimen name="addproduct_edittext_margin">15dp</dimen>
+    <dimen name="addproduct_textview_text_size">28sp</dimen>
+
+    <dimen name="addproduct_btn_text_size">28sp</dimen>
+    <dimen name="addproduct_back_icon_marginStart">10dp</dimen>
+    <dimen name="addproduct_back_icon_marginend">15dp</dimen>
+    <dimen name="addproduct_cordonator_linear_paddin">10dp</dimen>
+    <dimen name="addproduct_cordonator_paddin">10dp</dimen>
+    <dimen name="stock_recyclerview_padding">5dp</dimen>
+</resources>
