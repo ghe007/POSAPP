@@ -146,7 +146,7 @@
             android:layout_margin="15dp"
             android:background="@drawable/client_shape_searchview"
             android:hint="الكمية"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:textDirection="rtl" />
     </LinearLayout>
 

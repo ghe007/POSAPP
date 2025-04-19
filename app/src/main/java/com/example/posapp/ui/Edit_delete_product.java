@@ -17,19 +17,21 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.posapp.R;
 import com.example.posapp.StockActivity;
 import com.example.posapp.database.DataBaseControler;
+import com.example.posapp.model.Inventory;
 import com.example.posapp.model.Product;
 
 public class Edit_delete_product extends AppCompatActivity {
-TextView back_btn;
-TextView product_id;
-EditText product_parcode;
-EditText product_name;
-EditText product_price_of_buy;
-EditText product_price_of_sell;
-Button edit_product;
-Button delete_product;
-private Intent recive_id;
-private DataBaseControler db;
+    private TextView back_btn;
+    private TextView product_id;
+    private EditText product_parcode;
+    private EditText product_name;
+    private EditText product_price_of_buy;
+    private EditText product_price_of_sell;
+    private EditText edit_product_quantity;
+    private Button edit_product;
+    private Button delete_product;
+    private Intent recive_id;
+    private DataBaseControler db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,7 @@ private DataBaseControler db;
         product_name = findViewById(R.id.edit_product_name);
         product_price_of_buy = findViewById(R.id.edit_product_price_of_buy);
         product_price_of_sell = findViewById(R.id.edit_product_price_of_sell);
+        edit_product_quantity = findViewById(R.id.edit_product_quantity);
 
         edit_product = findViewById(R.id.edit_update_btn);
         delete_product = findViewById(R.id.edit_delete_btn);
@@ -67,12 +70,14 @@ private DataBaseControler db;
 
        db.open();
        Product product = db.getProductById(id);
+       Inventory inventory = db.getQuantity(id);
        db.close();
         product_parcode.setText(product.getBarcode());
         product_name.setText(product.getProduct_name());
         product_price_of_buy.setText(product.getPrice_of_buy()+"");
         product_price_of_sell.setText(product.getPrice_of_sell()+"");
 
+        edit_product_quantity.setText(inventory.getQuantity()+"");
 
         delete_product.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,15 +98,19 @@ private DataBaseControler db;
                   String name = product_name.getText().toString();
                   String price_of_buy = product_price_of_buy.getText().toString();
                   String price_of_sell = product_price_of_sell.getText().toString();
+                  String quantity = edit_product_quantity.getText().toString();
 
-                  if (parcode== "" || name == "" || price_of_buy == "" || price_of_sell == ""){
+                  if (parcode== "" || name == "" || price_of_buy == "" || price_of_sell == "" || quantity == ""){
                       Toast.makeText(Edit_delete_product.this, "بيانات غير كاملة !", Toast.LENGTH_SHORT).show();
-                  }else {
+                  }else{
                       double price_buy = Double.parseDouble((price_of_buy.toString()));
                       double price_sell = Double.parseDouble(price_of_sell.toString());
+                      int update_quantity = Integer.parseInt(quantity);
                       Product product1 = new Product(name,parcode,price_buy,price_sell);
+                      Inventory inventory = new Inventory();
+                      inventory.setQuantity(update_quantity);
                       product1.setId(id);
-                       db.updateProduct(product1);
+                       db.updateProduct(product1,inventory.getQuantity());
 
                   }
                   finish();

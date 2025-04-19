@@ -237,17 +237,21 @@ public  Product getProductByname(String name){
   }
 
 
-  public boolean updateProduct(Product product){
+  public boolean updateProduct(Product product , int quantity_in_inventorey){
 
-    ContentValues values = new ContentValues();
+    ContentValues values_to_product_table = new ContentValues();
    int id_p = product.getId();
-    values.put(Mydatabase.Product_barcode,product.getBarcode());
-    values.put(Mydatabase.Product_nameProduct,product.getProduct_name());
-    values.put(Mydatabase.Product_priceOfBuy,product.getPrice_of_buy());
-    values.put(Mydatabase.Product_priceOfSale,product.getQuantity_of_sell());
+      values_to_product_table.put(Mydatabase.Product_barcode,product.getBarcode());
+      values_to_product_table.put(Mydatabase.Product_nameProduct,product.getProduct_name());
+      values_to_product_table.put(Mydatabase.Product_priceOfBuy,product.getPrice_of_buy());
+      values_to_product_table.put(Mydatabase.Product_priceOfSale,product.getPrice_of_sell());
 
-   int result = database.update(Mydatabase.Product_table,values,"id=?",new String[]{id_p+""});
-      return result != 0;
+
+      ContentValues values_to_inventory_table = new ContentValues();
+      values_to_inventory_table.put(Mydatabase.Inventory_quantity,quantity_in_inventorey);
+   int result_product_table = database.update(Mydatabase.Product_table,values_to_product_table,"id=?",new String[]{id_p+""});
+   int result_inventory_table =database.update(Mydatabase.Inventory_table,values_to_inventory_table,Mydatabase.Inventory_ProductID+"=?",new String[]{id_p+""});
+      return (result_product_table != 0 && result_inventory_table !=0) ;
   }
 
 
@@ -256,10 +260,14 @@ public  Product getProductByname(String name){
     public  Product getProductById(int id){
        Product data = new Product();
 
+
         try {
             String query = "SELECT * FROM "+Mydatabase.Product_table+" WHERE "+Mydatabase.Product_id+" =?";
 
             Cursor cursor = database.rawQuery(query,new String[]{id+""});
+
+
+
             if (cursor != null){
                 if (cursor.moveToFirst()){
                     do {
@@ -279,10 +287,21 @@ public  Product getProductByname(String name){
             Toast.makeText(ctx, "حدث خطأ أثناء جلب البيانات!", Toast.LENGTH_SHORT).show();
         }
 
-        return data;
+        return data ;
     }
 
+@SuppressLint("Range")
+public Inventory getQuantity(int porduct_id){
+    Inventory inventory = new Inventory();
+    String query_get_quantity = "SELECT "+Mydatabase.Inventory_quantity+" FROM "+Mydatabase.Inventory_table+" WHERE "+Mydatabase.Inventory_ProductID+"=?";
+    Cursor cursor1 = database.rawQuery(query_get_quantity,new String[]{porduct_id+""});
+    if (cursor1.moveToFirst()){
+        inventory.setQuantity(cursor1.getInt(cursor1.getColumnIndex(Mydatabase.Inventory_quantity)));
 
+    }
+
+    return inventory;
+}
     public int deleteProdut(int id){
     int result = database.delete(Mydatabase.Product_table,"id = ?",new String[]{id+""});
     return result;
