@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.posapp.R;
 import com.example.posapp.model.Client;
 import com.example.posapp.model.Inventory;
 import com.example.posapp.model.Product;
@@ -212,12 +213,12 @@ public  Product getProductByname(String name){
                 clients.add(client);
             }while (cursor.moveToNext());
         }else {
-            Toast.makeText(ctx, "لايوجد زبائن!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, R.string.clients_msg_noClients, Toast.LENGTH_SHORT).show();
 
         }
 
     }else {
-        Toast.makeText(ctx, "لايوجد زبائن!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ctx, R.string.clients_msg_noClients, Toast.LENGTH_SHORT).show();
     }
     return clients;
   }
@@ -305,5 +306,63 @@ public Inventory getQuantity(int porduct_id){
     public int deleteProdut(int id){
     int result = database.delete(Mydatabase.Product_table,"id = ?",new String[]{id+""});
     return result;
+      }
+
+      @SuppressLint("Range")
+      public Client getClientByID(int id){
+      Client client = new Client();
+      String query = " SELECT * FROM "+Mydatabase.Client_table+" WHERE "+Mydatabase.Client_id+" =?";
+
+       Cursor cursor = database.rawQuery(query,new String[]{id+""});
+
+       if (cursor != null){
+           if (cursor.moveToFirst()){
+               do {
+                   client.setId(cursor.getInt(cursor.getColumnIndex(Mydatabase.Client_id)));
+                   client.setFullname(cursor.getString(cursor.getColumnIndex(Mydatabase.Cilent_fullName)));
+                   client.setPhone_number(cursor.getString(cursor.getColumnIndex(Mydatabase.Client_phoneNumber)));
+                   client.setStore_name(cursor.getString(cursor.getColumnIndex(Mydatabase.Client_storeName)));
+               }while (cursor.moveToNext());
+           }
+       }
+       return client;
+      }
+
+
+      public boolean updateClient(Client client){
+         ContentValues values = new ContentValues();
+
+         values.put(Mydatabase.Client_phoneNumber,client.getPhone_number());
+         values.put(Mydatabase.Cilent_fullName,client.getFullname());
+         values.put(Mydatabase.Client_storeName,client.getStore_name());
+
+       int result = database.update(Mydatabase.Client_table,values,"id = ?",new String[]{client.getId()+""});
+       return result!=0;
+      }
+
+      @SuppressLint("Range")
+      public ArrayList<Client> searchClient(String search_qury){
+ArrayList<Client> data = new ArrayList<>();
+    String query = " SELECT * FROM "+Mydatabase.Client_table+" WHERE "+Mydatabase.Client_phoneNumber+" LIKE ?"+" OR "+Mydatabase.Cilent_fullName+" LIKE ?";
+ Cursor cursor = database.rawQuery(query,new String[]{"%"+search_qury+"%","%"+search_qury+"%"});
+ if (cursor != null){
+     if (cursor.moveToFirst()){
+         do {
+             Client list_data = new Client();
+
+             list_data.setId(cursor.getInt(cursor.getColumnIndex(Mydatabase.Client_id)));
+             list_data.setFullname(cursor.getString(cursor.getColumnIndex(Mydatabase.Cilent_fullName)));
+             list_data.setPhone_number(cursor.getString(cursor.getColumnIndex(Mydatabase.Client_phoneNumber)));
+             list_data.setStore_name(cursor.getString(cursor.getColumnIndex(Mydatabase.Client_storeName)));
+
+             data.add(list_data);
+         }while (cursor.moveToNext());
+     }
+ }
+ return data;
+      }
+      public  boolean deleteClient(int id){
+      int result = database.delete(Mydatabase.Client_table,"id = ?",new String[]{id+""});
+      return result !=0;
       }
 }

@@ -100,7 +100,7 @@ public class Edit_delete_product extends AppCompatActivity {
                   String price_of_sell = product_price_of_sell.getText().toString();
                   String quantity = edit_product_quantity.getText().toString();
 
-                  if (parcode== "" || name == "" || price_of_buy == "" || price_of_sell == "" || quantity == ""){
+                  if (parcode.isEmpty()|| name.isEmpty()|| price_of_buy.isEmpty() || price_of_sell.isEmpty()|| quantity.isEmpty()){
                       Toast.makeText(Edit_delete_product.this, "بيانات غير كاملة !", Toast.LENGTH_SHORT).show();
                   }else{
                       double price_buy = Double.parseDouble((price_of_buy.toString()));
@@ -111,10 +111,11 @@ public class Edit_delete_product extends AppCompatActivity {
                       inventory.setQuantity(update_quantity);
                       product1.setId(id);
                        db.updateProduct(product1,inventory.getQuantity());
-
+                      Toast.makeText(Edit_delete_product.this, "تم تعديل منتج", Toast.LENGTH_SHORT).show();
+                      finish();
                   }
-                  finish();
-                Toast.makeText(Edit_delete_product.this, "تم تعديل منتج", Toast.LENGTH_SHORT).show();
+
+
             }
         });
 

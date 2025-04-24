@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.POSAPP" parent="Base.Theme.POSAPP" />
+
 </resources>

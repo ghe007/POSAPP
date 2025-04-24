@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/stock_custom_layout"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="wrap_content"
+    android:minHeight="80dp"
     app:cardCornerRadius="10dp"
     android:background="@drawable/addproduct_shape_bg"
-    app:cardUseCompatPadding="true"
+android:layout_margin="5dp"
        >
 
     <RelativeLayout
@@ -26,6 +27,7 @@
             android:layout_marginStart="5dp"
             android:text="المنتج"
            android:layout_marginTop="2dp"
+            android:maxWidth="100dp"
             android:textAlignment="center"
             android:textSize="@dimen/text_size" />
 
@@ -33,7 +35,7 @@
             android:id="@+id/custom_price_of_buy"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="8dp"
 android:layout_marginTop="2dp"
             android:layout_toStartOf="@id/custom_price_of_sell"
             android:text="سعر الشراء"

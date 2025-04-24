@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="POSAPP" />
+        app:title="@string/main_toolbar_title" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/main_card"
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="10dp"
-                android:text="اضافة منتج"
+                android:text="@string/main_addproduct"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="10dp"
-                android:text="المخزون "
+                android:text="@string/main_stock"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -148,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="10dp"
-                android:text="المبيعات"
+                android:text="@string/main_selling"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -195,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="10dp"
-                android:text="الزبائن"
+                android:text="@string/main_clients"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

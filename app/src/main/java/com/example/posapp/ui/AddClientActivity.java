@@ -61,10 +61,11 @@ add_client.setOnClickListener(new View.OnClickListener() {
                db.open();
             db.addClient(client);
             db.close();
-               Toast.makeText(AddClientActivity.this, "تم اضافة الزبون بنجاح", Toast.LENGTH_SHORT).show();
+               Toast.makeText(AddClientActivity.this, R.string.addClints_msg_succ, Toast.LENGTH_SHORT).show();
+               finish();
            }
         }catch (Exception e){
-            Toast.makeText(AddClientActivity.this, "معلومات خاطئة", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddClientActivity.this, R.string.addClints_msg_fail, Toast.LENGTH_SHORT).show();
         }
     }
 });

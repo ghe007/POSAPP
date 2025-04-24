@@ -61,37 +61,38 @@ product_add_btn.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
 
-            String name =  product_name.getText().toString();
-            String barcode =  product_barcode.getText().toString();
-            String quantity = product_quantity.getText().toString();
-            String price_of_buy = product_price_of_buy.getText().toString();
-            String price_of_sell = product_price_of_sell.getText().toString();
+        String name = product_name.getText().toString();
+        String barcode = product_barcode.getText().toString();
+        String quantity = product_quantity.getText().toString();
+        String price_of_buy = product_price_of_buy.getText().toString();
+        String price_of_sell = product_price_of_sell.getText().toString();
 
-            if (name.isEmpty() || barcode.isEmpty() || quantity.isEmpty() || price_of_buy.isEmpty()|| price_of_sell.isEmpty()){
-                Toast.makeText(AddProduct.this, "الرجاء ملئ جميع الحقول", Toast.LENGTH_SHORT).show();
-            }
+        if (name.isEmpty() || barcode.isEmpty() || quantity.isEmpty() || price_of_buy.isEmpty() || price_of_sell.isEmpty()) {
+            Toast.makeText(AddProduct.this, R.string.addProduct_product_msg_fail, Toast.LENGTH_SHORT).show();
+        } else {
 
             try {
                 int quantity_int = Integer.parseInt(quantity);
                 double price_of_buy_double = Double.parseDouble(price_of_buy);
                 double price_of_sell_double = Double.parseDouble(price_of_sell);
 
-            newproduct = new Product(name,barcode,price_of_buy_double,price_of_sell_double);
-            db = DataBaseControler.getInstance(getBaseContext());
-            db.open();
-             boolean result =  db.addProduct(newproduct);
+                newproduct = new Product(name, barcode, price_of_buy_double, price_of_sell_double);
+                db = DataBaseControler.getInstance(getBaseContext());
+                db.open();
+                boolean result = db.addProduct(newproduct);
 
-               if (result){
-                   Toast.makeText(AddProduct.this, "تم اضافة المنتج", Toast.LENGTH_SHORT).show();
-                   newinventory = new Inventory(newproduct.getId(),quantity_int);
-               boolean result_inventory =  db.insertNewProductIntoInventory(newinventory.getQuantity(),newinventory.getProductID());
-               if (result_inventory){
-                   Toast.makeText(AddProduct.this, "تم اضافة المنتج الى المخزون", Toast.LENGTH_SHORT).show();
-               }
-               }
-        } catch (Exception e) {
-            Log.e("addproduct", e.getMessage());
-            Toast.makeText(AddProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                if (result) {
+
+                    newinventory = new Inventory(newproduct.getId(), quantity_int);
+                    boolean result_inventory = db.insertNewProductIntoInventory(newinventory.getQuantity(), newinventory.getProductID());
+                    if (result_inventory) {
+                        Toast.makeText(AddProduct.this,R.string.addProduct_product_msg_success, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            } catch (Exception e) {
+                Log.e("addproduct", e.getMessage());
+                Toast.makeText(AddProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 });

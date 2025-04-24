@@ -29,7 +29,7 @@
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="منتج جديد"
+            android:text="@string/addProduct_toolbar_title"
             android:textSize="@dimen/addproduct_textview_text_size"
             android:textStyle="bold"/>
 
@@ -75,14 +75,12 @@
                 style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginVertical="@dimen/addproduct_edittext_margin"
-                android:hint="اسم المنتج">
+                android:hint="@string/addProduct_product_name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/product_name"
                     android:layout_width="match_parent"
-
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:maxLines="1"
@@ -96,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/addproduct_edittext_margin"
-                android:hint="بار كود المنتج">
+                android:hint="@string/addProduct_product_barcode">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/product_barcode"
@@ -113,7 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/addproduct_edittext_margin"
-                android:hint="سعر الشراء">
+                android:hint="@string/addProduct_product_price_ofBuy">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/product_price_of_buy"
@@ -130,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/addproduct_edittext_margin"
-                android:hint="سعر البيع">
+                android:hint="@string/addProduct_product_price_ofSell">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/product_price_of_sell"
@@ -147,7 +145,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/addproduct_edittext_margin"
-                android:hint="الكمية">
+                android:hint="@string/addProduct_product_quantity">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/product_quantity"
@@ -168,7 +166,7 @@
                 android:textColor="@color/black"
                 android:background="@drawable/addproduct_button"
                 android:foreground="?selectableItemBackground"
-                android:text="اضافة"
+                android:text="@string/addProduct_product_add_btn"
                 android:textSize="@dimen/text_size" />
 
         </LinearLayout>

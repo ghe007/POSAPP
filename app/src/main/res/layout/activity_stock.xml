@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="المخزون"
+            android:text="@string/inventory_toolbar_title"
             android:textSize="@dimen/addproduct_textview_text_size"
             android:textStyle="bold" />
 
@@ -67,7 +67,7 @@
 <TextView
     android:layout_alignParentStart="true"
     android:id="@+id/name"
-    android:text="المنتج"
+    android:text="@string/inventory_informations_product_name"
     android:layout_marginStart="35dp"
     android:layout_gravity="center_vertical"
     android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
 
                 android:id="@+id/price_of_buy"
                 android:layout_toStartOf="@id/price_of_sell"
-                android:text="سعر الشراء"
+                android:text="@string/inventory_informations_product_price_ofBuy"
                 android:layout_marginEnd="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="95dp"
                 android:id="@+id/price_of_sell"
-                android:text="سعر البيع"
+                android:text="@string/inventory_informations_product_price_ofSell"
 
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
             <TextView
                 android:layout_marginEnd="20dp"
                 android:id="@+id/quantity"
-                android:text="الكمية"
+                android:text="@string/inventory_informations_product_quantity"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"

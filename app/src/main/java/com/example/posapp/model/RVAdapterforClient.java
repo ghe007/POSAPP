@@ -16,11 +16,13 @@ import java.util.ArrayList;
 public class RVAdapterforClient extends RecyclerView.Adapter<RVAdapterforClient.Clientholder> {
 
     private ArrayList<Client> clients = new ArrayList<>();
+    private OnClientClick onClientClick;
     private Context ctx;
 
-   public RVAdapterforClient(ArrayList<Client> clients , Context ctx){
+   public RVAdapterforClient(ArrayList<Client> clients , Context ctx , OnClientClick onClientClick){
     this.clients = clients;
     this.ctx = ctx;
+    this.onClientClick = onClientClick;
 }
 
     @NonNull
@@ -36,7 +38,8 @@ public class RVAdapterforClient extends RecyclerView.Adapter<RVAdapterforClient.
              holder.tv_client_name.setText(c.getFullname());
              holder.tv_client_phone.setText(c.getPhone_number());
              holder.tv_client_store.setText(c.getStore_name());
-             holder.tv_client_name.setTag(c.getId());
+             holder.id = c.getId();
+
     }
 
     @Override
@@ -48,11 +51,19 @@ public class RVAdapterforClient extends RecyclerView.Adapter<RVAdapterforClient.
     public class Clientholder extends RecyclerView.ViewHolder{
 
         TextView tv_client_name,tv_client_phone,tv_client_store;
+        int id;
      public Clientholder(@NonNull View itemView) {
          super(itemView);
          tv_client_name=itemView.findViewById(R.id.fullname_client);
          tv_client_phone=itemView.findViewById(R.id.phone_client);
          tv_client_store=itemView.findViewById(R.id.store_client);
+
+         itemView.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 onClientClick.onClick(id);
+             }
+         });
 
      }
  }
