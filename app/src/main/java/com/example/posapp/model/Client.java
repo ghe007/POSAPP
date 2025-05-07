@@ -52,4 +52,13 @@ public class Client {
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
+
+    @Override
+    public String toString() {
+        return
+                 fullname +":"
+                +
+                 phone_number
+                ;
+    }
 }

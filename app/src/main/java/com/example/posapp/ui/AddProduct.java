@@ -22,6 +22,9 @@ import com.example.posapp.model.Inventory;
 import com.example.posapp.model.Product;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
 public class AddProduct extends AppCompatActivity {
 private Toolbar toolbar;
 private TextView toolbar_text , toolbar_back_icon;
@@ -67,6 +70,7 @@ product_add_btn.setOnClickListener(new View.OnClickListener() {
         String price_of_buy = product_price_of_buy.getText().toString();
         String price_of_sell = product_price_of_sell.getText().toString();
 
+
         if (name.isEmpty() || barcode.isEmpty() || quantity.isEmpty() || price_of_buy.isEmpty() || price_of_sell.isEmpty()) {
             Toast.makeText(AddProduct.this, R.string.addProduct_product_msg_fail, Toast.LENGTH_SHORT).show();
         } else {
@@ -87,6 +91,7 @@ product_add_btn.setOnClickListener(new View.OnClickListener() {
                     boolean result_inventory = db.insertNewProductIntoInventory(newinventory.getQuantity(), newinventory.getProductID());
                     if (result_inventory) {
                         Toast.makeText(AddProduct.this,R.string.addProduct_product_msg_success, Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 }
             } catch (Exception e) {

@@ -42,7 +42,7 @@ public class Mydatabase extends SQLiteAssetHelper {
     public static final String Product_Bill_BillID = "BillID";
     public static final String Product_Bill_quantity = "quantity";
     public static final String Product_Bill_totalpriceForProduct = "totalpriceForProduct";
-
+    public static final String Product_Bill_priceofsold = "priceofsold";
 
 
 

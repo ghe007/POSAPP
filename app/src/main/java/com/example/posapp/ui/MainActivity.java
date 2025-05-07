@@ -26,13 +26,14 @@ import com.example.posapp.database.Mydatabase;
 public class MainActivity extends AppCompatActivity {
 private CardView product_card;
 private CardView inventory_card;
+private CardView bill_card;
 private Toolbar toolbar;
 private Intent to_addproduct;
 private CardView main_card_client;
 private Intent to_clients;
 private CardView main_card_sell;
-    private Intent to_stock;
-    private Intent to_sell;
+private Intent to_stock;
+private Intent to_sell,to_bill;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ private CardView main_card_sell;
         inventory_card = findViewById(R.id.main_card_inventory);
         main_card_sell = findViewById(R.id.main_card_sell);
         main_card_client = findViewById(R.id.main_card_clients);
-
+        bill_card = findViewById(R.id.main_card_invoice);
         setSupportActionBar(toolbar);
 
 
@@ -96,7 +97,13 @@ inventory_card.setOnClickListener(new View.OnClickListener() {
 
             }
         });
-
+bill_card.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        to_bill = new Intent( MainActivity.this,ActivityInvoice.class);
+        launcher.launch(to_bill);
+    }
+});
     }
 
 

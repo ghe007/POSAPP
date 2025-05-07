@@ -45,8 +45,20 @@
             android:text="" />
 
 
-
     </com.google.android.material.appbar.MaterialToolbar>
+
+
+    <AutoCompleteTextView
+        android:id="@+id/search_clients"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/sell_search_shape"
+        android:hint="الاسم "
+        android:text=""
+        android:textDirection="rtl"
+        app:layout_constraintStart_toStartOf="@+id/autoCompleteTextView"
+        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView"
@@ -54,92 +66,124 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="@dimen/addproduct_edittext_margin"
+        android:layout_marginStart="15dp"
         android:background="@drawable/sell_search_shape"
         android:hint="ادخل اسم المنتج"
         android:textDirection="rtl"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
 
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/sell_rv"
-        android:padding="@dimen/stock_recyclerview_padding"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/stock_recyclerview_padding"
+        app:layout_constraintBottom_toTopOf="@+id/sell_total"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <LinearLayout
 
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="@dimen/addproduct_edittext_margin"
-        android:background="@drawable/shape_sell_linrear_informations"
-        android:gravity="center_vertical"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_sell_linrear_informations"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/sell_rv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        app:layout_constraintTop_toBottomOf="@+id/search_clients">
 
-    <TextView
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        android:layout_alignParentStart="true"
-        android:layout_marginHorizontal="@dimen/addproduct_edittext_margin"
-        android:id="@+id/sell_linear_product_name"
-        android:gravity="center"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:text="المنتج"/>
+            <TextView
 
-    <TextView
-        android:layout_toStartOf="@id/sell_product_linear_quantity"
-        android:layout_marginHorizontal="5dp"
-        android:id="@+id/sell_linear_product_price"
-        android:gravity="center"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:text="السعر"/>
-    <TextView
-        android:layout_toStartOf="@id/sell_product_linear_total"
-        android:layout_marginHorizontal="5dp"
-        android:id="@+id/sell_product_linear_quantity"
-        android:gravity="center"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:text="الكمية"/>
+                android:id="@+id/sell_linear_product_name"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginHorizontal="@dimen/addproduct_edittext_margin"
+                android:gravity="center"
+                android:text="المنتج" />
 
-    <TextView
-        android:layout_alignParentEnd="true"
-        android:layout_marginHorizontal="10dp"
-        android:id="@+id/sell_product_linear_total"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="الاجمالي" />
+            <TextView
+                android:id="@+id/sell_linear_product_price"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_toStartOf="@id/sell_product_linear_quantity"
+                android:gravity="center"
+                android:text="السعر" />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/sell_product_linear_quantity"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_toStartOf="@id/sell_product_linear_total"
+                android:gravity="center"
+                android:text="الكمية" />
+
+            <TextView
+                android:id="@+id/sell_product_linear_total"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:text="الاجمالي" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 
     <TextView
 
-        android:layout_margin="@dimen/addproduct_edittext_margin"
         android:id="@+id/sell_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/addproduct_edittext_margin"
+        android:layout_marginStart="16dp"
         android:text="total_price"
         android:textSize="@dimen/addproduct_textview_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.constraintlayout.utils.widget.MotionButton
+        android:id="@+id/btn_sell"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="بيع"
+
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:background="@drawable/edit_update_btn_shape"
+        android:layout_marginEnd="@dimen/addproduct_edittext_margin"
+        app:layout_constraintBottom_toBottomOf="@+id/sell_total"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sell_total" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_newClient_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="8dp"
+        android:background="@drawable/btn_add_client_sell"
+        android:gravity="center"
+        android:text="+"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/search_clients"
+        app:layout_constraintEnd_toEndOf="@+id/autoCompleteTextView"
+        app:layout_constraintStart_toEndOf="@+id/search_clients"
+        app:layout_constraintTop_toTopOf="@+id/search_clients" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

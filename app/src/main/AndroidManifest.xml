@@ -13,6 +13,12 @@
         android:theme="@style/Theme.POSAPP"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Invoice_detalis"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ActivityInvoice"
+            android:exported="false" />
+        <activity
             android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
@@ -39,9 +45,7 @@
             android:theme="@style/Theme.POSAPP" />
         <activity
             android:name=".ui.Splashscreen"
-            android:exported="true"
-
-           >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

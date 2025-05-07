@@ -38,13 +38,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main_layout_card"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/main_card_background">
 
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/addproduct__2_"
+                android:src="@drawable/addproduct_cart"
                 app:layout_constraintBottom_toTopOf="@+id/main_addproduct"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,13 +84,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main_layout_card_inventory"
             android:layout_width="match_parent"
+            android:background="@color/main_card_background"
             android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/stock"
+                android:src="@drawable/stock_icon"
                 app:layout_constraintBottom_toTopOf="@+id/main_inventory"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -130,13 +132,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main_layout_card_sell"
             android:layout_width="match_parent"
+            android:background="@color/main_card_background"
             android:layout_height="match_parent">
 
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/sellproduct_icon"
+                android:src="@drawable/sell_product"
                 app:layout_constraintBottom_toTopOf="@+id/main_sellproduct"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -176,6 +179,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main_layout_card_client"
+            android:background="@color/main_card_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -183,7 +187,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/user"
+                android:src="@drawable/client"
                 app:layout_constraintBottom_toTopOf="@+id/main_client"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -219,11 +223,60 @@
         android:layout_height="wrap_content"
         app:barrierDirection="left" />
 
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/main_card_invoice"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_margin="10dp"
+
+
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/main_card_clients"
+
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_layout_card_invoice"
+            android:layout_width="match_parent"
+            android:background="@color/main_card_background"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/invoice_bill"
+                app:layout_constraintBottom_toTopOf="@+id/main_invoice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/main_invoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"
+                android:text="@string/main_invoice"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="178dp" />
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

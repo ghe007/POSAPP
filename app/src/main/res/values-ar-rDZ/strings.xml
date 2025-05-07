@@ -1,48 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-<!--main screen-->
-    <string name="main_toolbar_title">نقاط بيع موزعة</string>
-    <string name="main_stock">المخزون</string>
-    <string name="main_addproduct">اضافة منتج</string>
-    <string name="main_clients">الزبائن</string>
-    <string name="main_selling">المبيعات</string>
-
-
-<!--inventory-->
-    <string name="inventory_toolbar_title">المخزون</string>
-    <string name="inventory_informations_product_name">المنتج</string>
-    <string name="inventory_informations_product_price_ofBuy">سعر الشراء</string>
-    <string name="inventory_informations_product_price_ofSell">سعر البيع</string>
-    <string name="inventory_informations_product_quantity">الكمية</string>
-
-<!--Add_Product-->
-    <string name="addProduct_toolbar_title">منتج جديد</string>
-    <string name="addProduct_product_name">اسم المنتج</string>
-    <string name="addProduct_product_barcode">بار كود المنتج</string>
-    <string name="addProduct_product_price_ofBuy">سعر الشراء</string>
-    <string name="addProduct_product_price_ofSell">سعر البيكميةل</string>
-    <string name="addProduct_product_msg_success">تم اضافة المنتج</string>
-    <string name="addProduct_product_msg_fail">الرجاء ملئ جميع الحقول</string>
-    <string name="addProduct_product_add_btn">اضافة</string>
-
-
-<!--CLients-->
-    <string name="clients_toolbar_title">الزبائن</string>
-    <string name="clients_search_client">اسم الزبون ,رقم الزبون</string>
-    <string name="clients_name">الاسم</string>
-    <string name="clients_phone">رقم الهاتف</string>
-    <string name="clients_store_name">رقم الهاتف</string>
-    <string name="clients_msg_noClients">لايوجد زبائن!</string>
-    <string name="clients_msg_noClients">لايوجد زبائن!</string>
-
-<!--AddClients-->
-    <string name="addClints_toolbar_title">اضافة زبون</string>
-    <string name="addClints_name">اسم الزبون</string>
-    <string name="addClints_phone">رقم الهاتف </string>
-    <string name="addClints_sotre">اسم المتجر</string>
-    <string name="addClints_add_btn">اضافة</string>
-    <string name="addClints_msg_succ">تم اضافة الزبون بنجاح</string>
-    <string name="addClints_msg_fail">معلومات غير كاملة!</string>
-
+    <string name="app_name">POSAPP</string>
 </resources>

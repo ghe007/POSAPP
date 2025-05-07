@@ -54,9 +54,15 @@ add_client.setOnClickListener(new View.OnClickListener() {
            String Client_phone = phone.getText().toString().trim();
            String store = store_name.getText().toString().trim();
 
+
+
+
            if (name.isEmpty() || Client_phone.isEmpty() || store.isEmpty()){
                throw  new Exception();
            }else {
+               if (Client_phone.length() != 10 ){
+                   throw new NullPointerException();
+               }
                Client client = new Client(name,store,Client_phone);
                db.open();
             db.addClient(client);
@@ -64,9 +70,14 @@ add_client.setOnClickListener(new View.OnClickListener() {
                Toast.makeText(AddClientActivity.this, R.string.addClints_msg_succ, Toast.LENGTH_SHORT).show();
                finish();
            }
+
         }catch (Exception e){
-            Toast.makeText(AddClientActivity.this, R.string.addClints_msg_fail, Toast.LENGTH_SHORT).show();
-        }
+            if (e instanceof NullPointerException){
+                Toast.makeText(AddClientActivity.this, "رقم الهاتف غير صحيح!", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(AddClientActivity.this, R.string.addClints_msg_fail, Toast.LENGTH_SHORT).show();
+            }
+            }
     }
 });
 

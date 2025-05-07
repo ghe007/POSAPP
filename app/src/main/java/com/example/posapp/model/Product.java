@@ -1,5 +1,9 @@
 package com.example.posapp.model;
 
+import androidx.annotation.Nullable;
+
+import java.util.Objects;
+
 public class Product {
     private int id;
     private String product_name;
@@ -9,7 +13,7 @@ public class Product {
    //
     private int quantity_of_sell = 1;
     private double total_price;
-
+    private int quantity;
 
     public Product(){}
 
@@ -70,14 +74,30 @@ public class Product {
     }
 
     public double getTotal_price() {
-        return total_price;
+    return quantity_of_sell*price_of_sell;
+     //   return total_price;
     }
 
     public void setTotal_price(double total_price) {
         this.total_price = total_price;
     }
 
-    //    public String getQuantity() {
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj){
+            return  true;
+        }
+        if (obj == null || getClass() != obj.getClass()){
+            return false;
+        }
+        Product product = (Product) obj;
+       return id == product.id;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+//    public String getQuantity() {
 //        return quantity;
 //    }
 //

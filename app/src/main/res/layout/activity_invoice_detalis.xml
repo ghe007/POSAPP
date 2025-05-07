@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Edit_delete_client">
+
+    <com.google.android.material.appbar.MaterialToolbar
+
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/yello"
+        android:gravity="center"
+
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/toolbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="تفاصيل الفاتورة"
+            android:textSize="@dimen/addproduct_textview_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="@dimen/addproduct_back_icon_marginStart"
+            android:layout_marginEnd="@dimen/addproduct_back_icon_marginend"
+            android:background="@drawable/back_btn_addproduct"
+            android:clickable="true"
+            android:drawableStart="@drawable/back_icon"
+            android:text="" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <LinearLayout
+
+
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" >
+        <TextView
+            android:layout_gravity="start"
+            android:id="@+id/invoice_detail_client_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="8dp"
+            android:text="اسم الزبون"
+            android:textSize="@dimen/text_size"
+            />
+    <TextView
+        android:layout_gravity="start"
+        android:id="@+id/invoice_detail_client_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_marginTop="7dp"
+        android:text="رقم الزبون "
+        android:textSize="@dimen/text_size"
+         />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5">
+
+        <TextView
+            android:id="@+id/invoice_detail_client_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+
+            android:layout_marginTop="8dp"
+            android:text="اسم المتجر"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/invoice_detail_bill_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="7dp"
+            android:textDirection="ltr"
+            android:text="تاريخ الفاتورة"
+            android:textSize="@dimen/text_size" />
+
+
+    </LinearLayout>
+    <LinearLayout
+
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+
+        android:background="@drawable/shape_sell_linrear_informations"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="@+id/guideline6">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/invoice_linear_name"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginHorizontal="25dp"
+                android:gravity="center"
+                android:text="@string/clients_name" />
+
+            <TextView
+                android:id="@+id/invoice_linear_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toStartOf="@id/invoice_linear_price"
+                android:gravity="center"
+                android:text="الكمية" />
+
+            <TextView
+                android:id="@+id/invoice_linear_price"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginEnd="20dp"
+                android:layout_toStartOf="@id/invoice_linear_total"
+                android:gravity="center"
+                android:text=" سعر البيع" />
+
+            <TextView
+                android:id="@+id/invoice_linear_total"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp"
+                android:gravity="center"
+                android:text=" الاجمالي" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bill_detail_list"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="5dp"
+        android:layout_height="2dp"
+        android:background="@color/semi_yello"
+        app:layout_constraintBottom_toBottomOf="@+id/bill_detail_list" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bill_detail_list">
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/edit_delete_btn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/edit_delete_btn_shape"
+            android:text="حذف الفاتورة"
+            android:textColor="@color/red"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/invoice_detail_total"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/invoice_border_item"
+        android:gravity="center"
+        android:minWidth="100dp"
+        android:padding="10dp"
+        android:text="0.0"
+        android:textSize="@dimen/text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="64dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="136dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

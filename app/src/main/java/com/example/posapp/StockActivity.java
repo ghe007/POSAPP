@@ -23,6 +23,7 @@ import com.example.posapp.database.DataBaseControler;
 import com.example.posapp.model.Inventory;
 import com.example.posapp.model.MyRVadapter;
 import com.example.posapp.model.OnClickStockItem;
+import com.example.posapp.model.Product;
 import com.example.posapp.ui.Edit_delete_product;
 
 import java.util.ArrayList;
@@ -64,7 +65,9 @@ db = DataBaseControler.getInstance(getBaseContext());
 
 db.open();
     products = db.getAllProductsIntoInventory();
+
 db.close();
+
 if (!(products.isEmpty())) {
     adapter = new MyRVadapter(products, new OnClickStockItem() {
         @Override
@@ -96,5 +99,12 @@ if (!(products.isEmpty())) {
                 }
             });
 
-
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        db.open();
+//        products = db.getAllProductsIntoInventory();
+//        db.close();
+//        adapter.updatedata(products);
+//    }
 }

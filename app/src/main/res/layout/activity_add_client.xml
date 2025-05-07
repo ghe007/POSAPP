@@ -78,6 +78,7 @@
         app:counterMaxLength="10"
         app:counterEnabled="true"
         android:layout_height="wrap_content"
+        app:errorEnabled="true"
 
         android:hint="@string/addClints_phone"
         android:layout_margin="@dimen/addproduct_edittext_margin"
@@ -90,6 +91,7 @@
             android:id="@+id/add_client_client_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
               android:inputType="number"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>

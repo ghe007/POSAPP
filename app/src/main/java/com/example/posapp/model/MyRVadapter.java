@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.posapp.R;
 
 import java.util.ArrayList;
-
+//Stock List
 public class MyRVadapter extends RecyclerView.Adapter<MyRVadapter.Myholder> {
 ArrayList<Inventory> products = new ArrayList<>();
 private OnClickStockItem onClickStockItem;

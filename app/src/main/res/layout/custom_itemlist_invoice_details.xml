@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-   >
+android:padding="5dp"
+    >
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-      android:layout_marginVertical="5dp"
+        android:layout_marginVertical="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,12 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-          >
+            >
 
 
             <TextView
+                android:maxWidth="120dp"
+                android:maxHeight="50dp"
                 android:padding="3dp"
-                android:id="@+id/sell_product_name"
+                android:id="@+id/invoice_detail_product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/addproduct_edittext_margin"
@@ -35,8 +37,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/sell_product_price_of_sell"
+            <TextView
+
+                android:id="@+id/invoice_detail_product_quantity"
                 android:layout_width="70dp"
                 android:layout_height="50dp"
                 android:gravity="center"
@@ -48,12 +51,12 @@
                 android:textSize="@dimen/text_size"
                 android:textDirection="ltr"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/sell_product_quantity"
+                app:layout_constraintEnd_toStartOf="@+id/invoice_detail_product_sellPrice"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <TextView
                 android:gravity="center"
-                android:id="@+id/sell_product_quantity"
+                android:id="@+id/invoice_detail_product_sellPrice"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
@@ -63,14 +66,14 @@
                 android:text="1"
                 android:textSize="@dimen/text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/sell_product_total_price"
+                app:layout_constraintEnd_toStartOf="@id/invoice_detail_product_total_product"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <EditText
-               android:textDirection="anyRtl"
+            <TextView
+                android:textDirection="anyRtl"
                 android:textStyle="italic"
-                android:id="@+id/sell_product_total_price"
+                android:id="@+id/invoice_detail_product_total_product"
                 android:layout_width="75dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
@@ -83,7 +86,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
 
-                android:enabled="false"
+                android:textColor="@color/stock_rv_item"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
