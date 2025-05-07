@@ -93,22 +93,10 @@
                 android:textDirection="ltr"
                 android:textSize="20sp" />
         </LinearLayout>
-
-
         <EditText
+            android:drawableStart="@drawable/client_icon"
 
-            android:id="@+id/edit_client_phone"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="15dp"
-            android:maxLength="10"
-            android:background="@drawable/client_shape_searchview"
-            android:hint="رقم الهاتف"
-            android:inputType="number"
-
-            android:textDirection="rtl" />
-
-        <EditText
+            android:paddingStart="5dp"
             android:maxLength="25"
             android:id="@+id/edit_client_name"
             android:layout_width="match_parent"
@@ -121,6 +109,24 @@
             android:inputType="text" />
 
         <EditText
+            android:drawableStart="@drawable/call_left"
+             android:drawablePadding="5dp"
+            android:id="@+id/edit_client_phone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="15dp"
+            android:maxLength="10"
+            android:background="@drawable/client_shape_searchview"
+            android:hint="رقم الهاتف"
+            android:inputType="number"
+
+            android:textDirection="rtl" />
+
+
+
+        <EditText
+            android:drawableStart="@drawable/store"
+            android:drawablePadding="5dp"
             android:id="@+id/edit_client_store_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"

@@ -93,6 +93,7 @@
                 style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_marginVertical="@dimen/addproduct_edittext_margin"
                 android:hint="@string/addProduct_product_barcode">
 
@@ -102,6 +103,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:maxLines="1"
+                     android:drawableEnd="@drawable/baseline_qr_code_scanner_24"
+
                     android:textDirection="rtl"
                     android:textSize="@dimen/text_size" />
             </com.google.android.material.textfield.TextInputLayout>

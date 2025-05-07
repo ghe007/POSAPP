@@ -15,7 +15,6 @@
         android:layout_height="?actionBarSize"
         android:background="@color/yello"
         android:gravity="center"
-
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +96,8 @@
 
 
         <EditText
-
+           android:drawableEnd="@drawable/baseline_qr_code_scanner_24"
+            android:paddingEnd="10dp"
             android:id="@+id/edit_product_parcode"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -110,6 +110,7 @@
             android:textDirection="rtl" />
 
         <EditText
+            android:drawableEnd="@drawable/product_icon"
             android:id="@+id/edit_product_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -120,6 +121,8 @@
             android:inputType="text" />
 
         <EditText
+            android:drawableEnd="@drawable/dollar_red"
+            android:padding="10dp"
             android:id="@+id/edit_product_price_of_buy"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -130,6 +133,8 @@
             android:inputType="numberDecimal" />
 
         <EditText
+            android:drawableEnd="@drawable/dollar_green"
+            android:padding="10dp"
             android:id="@+id/edit_product_price_of_sell"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -140,6 +145,8 @@
             android:inputType="numberDecimal" />
 
         <EditText
+            android:drawableEnd="@drawable/quantity"
+            android:padding="10dp"
             android:id="@+id/edit_product_quantity"
             android:layout_width="match_parent"
             android:layout_height="50dp"
