@@ -215,7 +215,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="106dp" />
+        app:layout_constraintGuide_percent="0.12197929" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier"
@@ -231,19 +231,20 @@
         android:layout_margin="10dp"
 
 
+        android:layout_marginStart="10dp"
         android:elevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/main_card_clients"
 
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_card_clients"
         app:strokeColor="@color/black"
         app:strokeWidth="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main_layout_card_invoice"
             android:layout_width="match_parent"
-            android:background="@color/main_card_background"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/main_card_background">
 
             <ImageView
                 android:layout_width="120dp"
