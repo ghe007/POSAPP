@@ -46,7 +46,7 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:queryHint="اسم,بار كود,سعر,كمية"
         android:textDirection="anyRtl"
         android:background="@drawable/client_shape_searchview"

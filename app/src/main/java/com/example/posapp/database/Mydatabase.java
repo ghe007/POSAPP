@@ -9,6 +9,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 public class Mydatabase extends SQLiteAssetHelper {
 
     private  static  final String db_name = "posm.db";
+
     private static final int vers = 1;
 
 // Tables : every space mean we did another table
@@ -48,5 +49,6 @@ public class Mydatabase extends SQLiteAssetHelper {
 
     public Mydatabase(Context context) {
         super(context, db_name, null, vers);
+
     }
 }

@@ -27,7 +27,7 @@ public class MyRVadapterSell extends RecyclerView.Adapter<MyRVadapterSell.Myhold
     private SellListClick sellListClick;
     private OnProductChangeListner updatetotal;
     private DataBaseControler db;
-public interface OnProductChangeListner{
+    public interface OnProductChangeListner{
     void onProductListChangeListner(ArrayList<Product> updatedList);
 }
     public MyRVadapterSell(ArrayList<Product> product, Context ctx,SellListClick sellListClick,OnProductChangeListner listner) {

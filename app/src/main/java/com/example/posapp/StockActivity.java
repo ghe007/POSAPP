@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 public class StockActivity extends AppCompatActivity {
 private TextView toolbar_icon;
 private RecyclerView rv_products_list;
+private SearchView searchView;
 private DataBaseControler db;
 private ArrayList<Inventory> products;
 private MyRVadapter adapter;
@@ -50,6 +52,7 @@ private int id = -1;
 
 toolbar_icon = findViewById(R.id.stock_toolbar_back_icon);
 rv_products_list = findViewById(R.id.products_list);
+searchView = findViewById(R.id.product_search);
 
 
 toolbar_icon.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +88,31 @@ if (!(products.isEmpty())) {
 }else {
     Toast.makeText(this, "لاتوجد منتجات", Toast.LENGTH_SHORT).show();
 }
+
+searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+     try {
+         db.open();
+         products = db.searchProductInventory(newText);
+         if (products.isEmpty()){
+             Toast.makeText(StockActivity.this, "منتج غير موجود", Toast.LENGTH_SHORT).show();
+         }
+         db.close();
+         adapter.updatedata(products);
+
+     } catch (Exception e) {
+         Toast.makeText(StockActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+     }
+
+        return true;
+    }
+});
 
     }
 

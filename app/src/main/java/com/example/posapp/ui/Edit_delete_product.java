@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -19,16 +20,19 @@ import com.example.posapp.StockActivity;
 import com.example.posapp.database.DataBaseControler;
 import com.example.posapp.model.Inventory;
 import com.example.posapp.model.Product;
+import com.journeyapps.barcodescanner.CaptureActivity;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 public class Edit_delete_product extends AppCompatActivity {
     private TextView back_btn;
     private TextView product_id;
-    private EditText product_parcode;
+    private EditText product_barcode;
     private EditText product_name;
     private EditText product_price_of_buy;
     private EditText product_price_of_sell;
     private EditText edit_product_quantity;
-    private Button edit_product;
+    private Button edit_product , scan_barcode_btn;
     private Button delete_product;
     private Intent recive_id;
     private DataBaseControler db;
@@ -45,8 +49,8 @@ public class Edit_delete_product extends AppCompatActivity {
 
         back_btn = findViewById(R.id.back_btn);
         product_id = findViewById(R.id.edit_product_id);
-
-        product_parcode = findViewById(R.id.edit_product_parcode);
+        scan_barcode_btn = findViewById(R.id.edit_delete_barcode_btn);
+        product_barcode = findViewById(R.id.edit_product_parcode);
         product_name = findViewById(R.id.edit_product_name);
         product_price_of_buy = findViewById(R.id.edit_product_price_of_buy);
         product_price_of_sell = findViewById(R.id.edit_product_price_of_sell);
@@ -72,7 +76,7 @@ public class Edit_delete_product extends AppCompatActivity {
        Product product = db.getProductById(id);
        Inventory inventory = db.getQuantity(id);
        db.close();
-        product_parcode.setText(product.getBarcode());
+        product_barcode.setText(product.getBarcode());
         product_name.setText(product.getProduct_name());
         product_price_of_buy.setText(product.getPrice_of_buy()+"");
         product_price_of_sell.setText(product.getPrice_of_sell()+"");
@@ -94,7 +98,7 @@ public class Edit_delete_product extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 db.open();
-                  String parcode  = product_parcode.getText().toString();
+                  String parcode  = product_barcode.getText().toString();
                   String name = product_name.getText().toString();
                   String price_of_buy = product_price_of_buy.getText().toString();
                   String price_of_sell = product_price_of_sell.getText().toString();
@@ -119,5 +123,35 @@ public class Edit_delete_product extends AppCompatActivity {
             }
         });
 
+        scan_barcode_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onpenBarcodeScaenner();
+            }
+        });
+
     }
+
+
+    ActivityResultLauncher<ScanOptions> barcodeLancher = registerForActivityResult(new ScanContract() , result ->{
+        if (result.getContents() != null){
+            product_barcode.setText(result.getContents());
+        }
+    });
+
+
+    private void onpenBarcodeScaenner(){
+        ScanOptions options = new ScanOptions();
+
+        options.setPrompt("وجه الكاميرا نحو الباركود");
+
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(false);
+
+
+        options.setCaptureActivity(CaptureActivity.class);
+
+        barcodeLancher.launch(options);
+    }
+
 }

@@ -568,4 +568,70 @@ public ArrayList<Product_Bill> getAllBillDetails(int ID){
        }
        return data;
     }
+    @SuppressLint("Range")
+    public ArrayList<Inventory> searchProductInventory(String query){
+    String q =" SELECT Invetory.id,Invetory.ProductID, Product.nameProduct , Product.barcode , Product.priceOfBuy , Product.priceOfSell,Invetory.quantity FROM Invetory"
+                +" JOIN Product ON Invetory.ProductID = Product.id WHERE Product.nameProduct LIKE ? OR Product.barcode LIKE ? OR Product.priceOfBuy LIKE ? OR Product.priceOfSell LIKE ? OR Invetory.quantity LIKE ?";
+
+    ArrayList<Inventory> products = new ArrayList<>();
+    try {
+
+
+        Cursor cursor = database.rawQuery(q,new String[]{"%"+query+"%","%"+query+"%","%"+query+"%","%"+query+"%","%"+query+"%"});
+
+        if (cursor != null){
+            if (cursor.moveToFirst()){
+                do {
+                    Inventory inventory = new Inventory();
+                    inventory.setId(cursor.getInt(cursor.getColumnIndex(Mydatabase.Inventory_id)));
+                    inventory.setProductID(cursor.getInt(cursor.getColumnIndex(Mydatabase.Inventory_ProductID)));
+                    inventory.setQuantity(cursor.getInt(cursor.getColumnIndex(Mydatabase.Inventory_quantity)));
+                    inventory.setProduct_name(cursor.getString(cursor.getColumnIndex(Mydatabase.Product_nameProduct)));
+                    inventory.setBar_code(cursor.getString(cursor.getColumnIndex(Mydatabase.Product_barcode)));
+                    inventory.setPriceOfBuy(cursor.getDouble(cursor.getColumnIndex(Mydatabase.Product_priceOfBuy)));
+                    inventory.setPriceOfSell(cursor.getDouble(cursor.getColumnIndex(Mydatabase.Product_priceOfSale)));
+
+                    products.add(inventory);
+
+
+                }while (cursor.moveToNext());
+            }
+        }
+    } catch (Exception e) {
+
+    }
+    return products;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<String> getClientsPhone(){
+    String query = " SELECT "+Mydatabase.Client_phoneNumber+" FROM "+Mydatabase.Client_table;
+        ArrayList<String> phone = new ArrayList<>();
+    Cursor cursor = database.rawQuery(query,null);
+    if (cursor != null){
+        if (cursor.moveToFirst()){
+            do {
+                phone.add(cursor.getString(cursor.getColumnIndex(Mydatabase.Client_phoneNumber)));
+            }while (cursor.moveToNext());
+        }
+    }
+
+        return phone;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<String> getProductbarcode(){
+     String query = " SELECT "+Mydatabase.Product_barcode+" FROM "+Mydatabase.Product_table;
+     ArrayList<String> barcodes = new ArrayList<>();
+     Cursor cursor = database.rawQuery(query,null);
+     if (cursor != null){
+         if (cursor.moveToFirst()){
+             do {
+                 barcodes.add(cursor.getString(cursor.getColumnIndex(Mydatabase.Product_barcode)));
+             }while (cursor.moveToNext());
+         }
+     }
+     return barcodes;
+    }
+
 }

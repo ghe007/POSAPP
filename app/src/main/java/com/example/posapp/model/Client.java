@@ -1,5 +1,9 @@
 package com.example.posapp.model;
 
+import androidx.annotation.Nullable;
+
+import java.util.Objects;
+
 public class Client {
 
     private int id;
@@ -52,6 +56,8 @@ public class Client {
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
+
+
 
     @Override
     public String toString() {

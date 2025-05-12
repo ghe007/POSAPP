@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="black90">#95000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black20">#20000000</color>
      <color name="yello">#edca4a</color>
       <color name="stock_rv_item">#19a836</color>
     <color name="semi_yello">#90edca4a</color>
@@ -11,4 +12,5 @@
     <color name="btn_add_client_sell_color1">#F2FC210D</color>
     <color name="btn_add_client_sell_color2">#f2F7CE38</color>
     <color name="btn_add_client_sell_colorcenter">#f2FF564E</color>
+    <color name="white90">#05FFFFFF</color>
 </resources>

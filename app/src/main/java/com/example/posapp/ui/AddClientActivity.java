@@ -17,9 +17,12 @@ import com.example.posapp.R;
 import com.example.posapp.database.DataBaseControler;
 import com.example.posapp.model.Client;
 
+import java.util.ArrayList;
+
 public class AddClientActivity extends AppCompatActivity {
 private TextView back_icon;
 private Button add_client;
+private ArrayList<String> clients_phone;
 private EditText client_name;
 private EditText phone;
 private EditText store_name;
@@ -40,7 +43,9 @@ private DataBaseControler db;
         client_name = findViewById(R.id.add_client_client_name);
         phone = findViewById(R.id.add_client_client_phone);
         store_name = findViewById(R.id.add_client_client_store_name);
+
 db = DataBaseControler.getInstance(AddClientActivity.this);
+clients_phone = new ArrayList<>();
 
 back_icon.setOnClickListener(v -> {
     finish();
@@ -65,7 +70,15 @@ add_client.setOnClickListener(new View.OnClickListener() {
                }
                Client client = new Client(name,store,Client_phone);
                db.open();
-            db.addClient(client);
+               clients_phone = db.getClientsPhone();
+
+               if (clients_phone.contains(client.getPhone_number())){
+
+                   throw new ClassNotFoundException();
+               }else {
+                   db.addClient(client);
+               }
+
             db.close();
                Toast.makeText(AddClientActivity.this, R.string.addClints_msg_succ, Toast.LENGTH_SHORT).show();
                finish();
@@ -74,7 +87,9 @@ add_client.setOnClickListener(new View.OnClickListener() {
         }catch (Exception e){
             if (e instanceof NullPointerException){
                 Toast.makeText(AddClientActivity.this, "رقم الهاتف غير صحيح!", Toast.LENGTH_SHORT).show();
-            }else {
+            } else if (e instanceof ClassNotFoundException) {
+                Toast.makeText(AddClientActivity.this, " يوجد هذا الرقم مسبقا لزبون اخر!", Toast.LENGTH_SHORT).show();
+            } else {
                 Toast.makeText(AddClientActivity.this, R.string.addClints_msg_fail, Toast.LENGTH_SHORT).show();
             }
             }

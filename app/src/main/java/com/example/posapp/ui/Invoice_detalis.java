@@ -41,14 +41,15 @@ public class Invoice_detalis extends AppCompatActivity {
             return insets;
         });
 
-       rv = findViewById(R.id.bill_detail_list);
-       tv_total = findViewById(R.id.invoice_detail_total);
+        rv = findViewById(R.id.bill_detail_list);
+        tv_total = findViewById(R.id.invoice_detail_total);
         client_name = findViewById(R.id.invoice_detail_client_name);
         client_phone = findViewById(R.id.invoice_detail_client_phone);
         client_store = findViewById(R.id.invoice_detail_client_store);
         bill_date = findViewById(R.id.invoice_detail_bill_date);
-       back_btn = findViewById(R.id.back_btn);
-       back_btn.setOnClickListener(view -> {
+
+        back_btn = findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(view -> {
            finish();
        });
         db = DataBaseControler.getInstance(this);
@@ -58,7 +59,11 @@ public class Invoice_detalis extends AppCompatActivity {
          int bill_id = recived_data.getIntExtra(ActivityInvoice.bill_id,-1);
           db = DataBaseControler.getInstance(this);
            db.open();
+
            data_list = db.getAllBillDetails(bill_id);
+           if (data_list.isEmpty()){
+               throw  new NullPointerException();
+           }
        tv_total.setText(data_list.get(0).getTotalpriceForbill()+"");
        bill_date.setText(data_list.get(0).getBilldate());
        client_name.setText(recived_data.getStringExtra(ActivityInvoice.client_name));
@@ -71,8 +76,12 @@ public class Invoice_detalis extends AppCompatActivity {
            rv.setAdapter(adapter);
 
        }catch (Exception e){
-           Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-           Log.e("cating",e.getMessage());
+           if (e instanceof NullPointerException){
+               Toast.makeText(this,"منتجات غير موجودة",Toast.LENGTH_SHORT).show();
+           }else {
+               Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+               Log.e("cating", e.getMessage());
+           }
        }
 
     }

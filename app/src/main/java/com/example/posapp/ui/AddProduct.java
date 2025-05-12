@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -21,6 +22,9 @@ import com.example.posapp.database.DataBaseControler;
 import com.example.posapp.model.Inventory;
 import com.example.posapp.model.Product;
 import com.google.android.material.textfield.TextInputEditText;
+import com.journeyapps.barcodescanner.CaptureActivity;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -29,7 +33,7 @@ public class AddProduct extends AppCompatActivity {
 private Toolbar toolbar;
 private TextView toolbar_text , toolbar_back_icon;
 private TextInputEditText product_name , product_barcode , product_price_of_buy , product_price_of_sell , product_quantity;
-private Button product_add_btn;
+private Button product_add_btn,scan_barcode_btn;
 private Product newproduct;
 private Inventory newinventory;
 private DataBaseControler db;
@@ -53,6 +57,7 @@ product_barcode = findViewById(R.id.product_barcode);
 product_quantity = findViewById(R.id.product_quantity);
 product_price_of_buy = findViewById(R.id.product_price_of_buy);
 product_price_of_sell = findViewById(R.id.product_price_of_sell);
+scan_barcode_btn = findViewById(R.id.add_product_barcode_btn);
 
 toolbar_back_icon.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -83,7 +88,14 @@ product_add_btn.setOnClickListener(new View.OnClickListener() {
                 newproduct = new Product(name, barcode, price_of_buy_double, price_of_sell_double);
                 db = DataBaseControler.getInstance(getBaseContext());
                 db.open();
-                boolean result = db.addProduct(newproduct);
+                ArrayList<String> barcodes = new ArrayList<>();
+                ArrayList<String> product_name = new ArrayList<>();
+                barcodes = db.getProductbarcode();
+
+                if (barcodes.contains(newproduct.getBarcode())){
+                    throw new RuntimeException();
+                }
+                    boolean result = db.addProduct(newproduct);
 
                 if (result) {
 
@@ -95,16 +107,44 @@ product_add_btn.setOnClickListener(new View.OnClickListener() {
                     }
                 }
             } catch (Exception e) {
-                Log.e("addproduct", e.getMessage());
-                Toast.makeText(AddProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                if (e instanceof RuntimeException){
+                    Toast.makeText(AddProduct.this, "هذا المنتج موجود مسبقا!", Toast.LENGTH_SHORT).show();
+                }else {
+                    Log.e("addproduct", e.getMessage());
+                    Toast.makeText(AddProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
             }
         }
     }
+
+
 });
 
 
+    scan_barcode_btn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            onpenBarcodeScaenner();
+        }
+    });
+
+    }
+ActivityResultLauncher<ScanOptions> barcodeLancher = registerForActivityResult(new ScanContract() , result ->{
+   if (result.getContents() != null){
+       product_barcode.setText(result.getContents());
+   }
+});
 
 
+    private void onpenBarcodeScaenner(){
+        ScanOptions options = new ScanOptions();
+        options.setPrompt("وجه الكاميرا نحو الباركود");
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(false);
+        options.setCaptureActivity(CaptureActivity.class);
+
+        barcodeLancher.launch(options);
     }
 
 }
