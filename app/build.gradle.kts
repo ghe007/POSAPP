@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+
     implementation("com.readystatesoftware.sqliteasset:sqliteassethelper:+")
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation(libs.appcompat)

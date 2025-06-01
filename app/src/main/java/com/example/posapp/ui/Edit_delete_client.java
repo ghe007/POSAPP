@@ -18,13 +18,15 @@ import com.example.posapp.R;
 import com.example.posapp.database.DataBaseControler;
 import com.example.posapp.model.Client;
 
+import java.util.ArrayList;
+
 public class Edit_delete_client extends AppCompatActivity {
 private TextView back_btn , tv_id;
 private EditText client_name,client_phone,client_store;
 private Button save_btn,delete_btn;
 private Intent data;
 private DataBaseControler db;
-
+private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +48,13 @@ private DataBaseControler db;
         delete_btn = findViewById(R.id.edit_delete_btn);
         db = DataBaseControler.getInstance(this);
 
-
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        int id = getIntent().getIntExtra("CLIENT_ID",-1);
+        id = getIntent().getIntExtra("CLIENT_ID",-1);
         tv_id.setText(id+"");
         db.open();
            Client client = db.getClientByID(id);
@@ -76,10 +77,28 @@ private DataBaseControler db;
                     client.setPhone_number(new_phone);
                     client.setStore_name(new_store);
                     db.open();
-                    db.updateClient(client);
+                    ArrayList<String> clients_phone = new ArrayList<>();
+                    int checkID = db.getIdClientbyPhone(client.getPhone_number());
+                    clients_phone = db.getClientsPhone();
+                    try {
+                        if (clients_phone.contains(client.getPhone_number()) && id != checkID){
+                            throw new RuntimeException();
+                        }else {
+                            db.updateClient(client);
+                            Toast.makeText(Edit_delete_client.this, "تم تحديث الزبون بنجاح", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }catch (Exception e){
+                        if (e instanceof RuntimeException){
+                            Toast.makeText(Edit_delete_client.this, " يوجد هذا الرقم مسبقا لزبون اخر!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+
+
                     db.close();
-                    Toast.makeText(Edit_delete_client.this, "تم تحديث الزبون بنجاح", Toast.LENGTH_SHORT).show();
-                    finish();
+
+
                 }
             }
         });

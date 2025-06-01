@@ -80,8 +80,11 @@ inventory_card.setOnClickListener(new View.OnClickListener() {
         main_card_sell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                to_sell  =new Intent(MainActivity.this,SellActivity.class);
-                launcher.launch(to_sell);
+
+                    to_sell  =new Intent(MainActivity.this,SellActivity.class);
+                    launcher.launch(to_sell);
+
+
             }
         });
         main_card_client.setOnClickListener(new View.OnClickListener() {

@@ -164,7 +164,7 @@ public class MyRVadapterSell extends RecyclerView.Adapter<MyRVadapterSell.Myhold
                 db.close();
                 total.setText(String.valueOf(_total));
                 if (quant > quantityInInventory){
-                    Toast.makeText(context, "لا يمكن تجاوز الكمية الموجودة في المخزون!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "لا يمكن تجاوز كمية "+product.get(getAdapterPosition()).getProduct_name()+" الموجودة في المخزون!", Toast.LENGTH_SHORT).show();
                     SellActivity.totalError();
                     throw  new ArrayIndexOutOfBoundsException();
                 }

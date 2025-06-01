@@ -46,12 +46,12 @@
 
     </androidx.appcompat.widget.Toolbar>
     <SearchView
-        android:queryHint="رقم الفاتورة,التاريخ,الاجمالي"
-
+        android:inputType="number"
+        android:queryHint="رقم الفاتورة"
         android:textDirection="anyRtl"
         android:background="@drawable/client_shape_searchview"
         android:layout_margin="@dimen/addproduct_edittext_margin"
-        android:id="@+id/client_search"
+        android:id="@+id/invoice_search"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/client_search">
+        app:layout_constraintTop_toBottomOf="@+id/invoice_search">
 
         <LinearLayout
 

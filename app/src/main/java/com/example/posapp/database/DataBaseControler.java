@@ -27,7 +27,7 @@ public class DataBaseControler {
 
 private DataBaseControler(Context context){
    sqLiteAssetHelper = new Mydatabase(context);
-    ctx = context;
+   ctx = context;
  }
 
  public void IsConnected(){
@@ -72,20 +72,18 @@ return result != -1;
 }
     @SuppressLint("Range")
 public ArrayList<Inventory> getAllProductsIntoInventory() {
-
         ArrayList<Inventory> products = new ArrayList<>();
 //        try {
             String query =" SELECT Invetory.id,Invetory.ProductID, Product.nameProduct , Product.barcode , Product.priceOfBuy , Product.priceOfSell,Invetory.quantity FROM Invetory"
             +" JOIN Product ON Invetory.ProductID = Product.id";
+            try {
 
-
+            } catch (Exception e) {
+                Toast.makeText(ctx, e.getMessage()+"", Toast.LENGTH_SHORT).show();
+            }
             Cursor cursor = database.rawQuery(query, null);
-
-
                 if (cursor.moveToFirst()) {
-
                     do {
-
                         int id = cursor.getInt(cursor.getColumnIndex(Mydatabase.Inventory_id));
                         int ProductID = cursor.getInt(cursor.getColumnIndex(Mydatabase.Inventory_ProductID));
                         String product_name = cursor.getString(cursor.getColumnIndex(Mydatabase.Product_nameProduct));
@@ -93,7 +91,6 @@ public ArrayList<Inventory> getAllProductsIntoInventory() {
                         String bar_code = cursor.getString(cursor.getColumnIndex(Mydatabase.Product_barcode));
                         double priceOfBuy = cursor.getDouble(cursor.getColumnIndex(Mydatabase.Product_priceOfBuy));
                         double priceOfSell = cursor.getDouble(cursor.getColumnIndex(Mydatabase.Product_priceOfSale));
-
 
                         Inventory inventory = new Inventory(id, ProductID, quantity, product_name, bar_code, priceOfBuy, priceOfSell);
                         products.add(inventory);
@@ -537,16 +534,10 @@ public ArrayList<Product_Bill> getAllBillDetails(int ID){
  @SuppressLint("Range")
     public ArrayList<Invoice> searchBillByIdOrTotalOrDate(String query){
         ArrayList<Invoice> data = new ArrayList<>();
-        String q = " SELECT b." +Mydatabase.Bill_id+
-                " AS BIllID,b."+Mydatabase.Bill_ClientID+
-                ",b."+Mydatabase.Bill_date+
-                ",b."+Mydatabase.Bill_totalprice+
-                ",c." +Mydatabase.Cilent_fullName+
-                " FROM "+Mydatabase.Bill_table+
-                " AS b JOIN "+Mydatabase.Client_table+
-                " AS c ON b."+Mydatabase.Bill_ClientID+"= c."+Mydatabase.Client_id +" WHERE "+Mydatabase.Bill_id+" LIKE ? OR "+Mydatabase.Bill_date+" LIKE ? OR "+Mydatabase.Bill_totalprice+" LIKE ?";
+        String q = " SELECT *,b."+Mydatabase.Bill_id+" AS BIllID FROM "+Mydatabase.Bill_table+" AS b JOIN "+Mydatabase.Client_table+" AS c ON b."+Mydatabase.Bill_ClientID+" = c."+Mydatabase.Client_id+
+                " WHERE b."+Mydatabase.Bill_id+" LIKE ? OR b."+Mydatabase.Bill_date+" LIKE ? OR b."+Mydatabase.Bill_totalprice+" LIKE ? ORDER BY b."+Mydatabase.Bill_id+" ASC";
        try {
-           Cursor cursor = database.rawQuery(q, new String[]{"%" + query + "%", "%" + query + "%", "%" + query + "%"});
+           Cursor cursor = database.rawQuery(q, new String[]{query+"%"});
 
            if (cursor != null) {
                if (cursor.moveToFirst()) {
@@ -557,6 +548,8 @@ public ArrayList<Product_Bill> getAllBillDetails(int ID){
                        invoice.setDate(cursor.getString(cursor.getColumnIndex(Mydatabase.Bill_date)));
                        invoice.setTotal_price(cursor.getDouble(cursor.getColumnIndex(Mydatabase.Bill_totalprice)));
                        invoice.setClient_id(cursor.getInt(cursor.getColumnIndex(Mydatabase.Bill_ClientID)));
+                       invoice.setPhone_number(cursor.getString(cursor.getColumnIndex(Mydatabase.Client_phoneNumber)));
+                       invoice.setStore_name(cursor.getString(cursor.getColumnIndex(Mydatabase.Client_storeName)));
                        data.add(invoice);
                    } while (cursor.moveToNext());
                    cursor.close();
@@ -564,6 +557,7 @@ public ArrayList<Product_Bill> getAllBillDetails(int ID){
            }
        } catch (Exception e) {
            Toast.makeText(ctx, " حذث خطأ عند البحث عن الفاتورة!", Toast.LENGTH_SHORT).show();
+           Log.e("searchBill",e.getMessage());
 
        }
        return data;
@@ -633,5 +627,22 @@ public ArrayList<Product_Bill> getAllBillDetails(int ID){
      }
      return barcodes;
     }
+    @SuppressLint("Range")
+public int getProductID(String barcode , String productName){
+
+    String query = " SELECT "+Mydatabase.Product_id+" FROM "+Mydatabase.Product_table+" WHERE "+Mydatabase.Product_nameProduct+"=? AND "+
+            Mydatabase.Product_barcode+"=?";
+    Cursor cursor = database.rawQuery(query,new String[]{productName,barcode});
+    int id = -1;
+    if (cursor !=null){
+        if (cursor.moveToFirst()){
+            do {
+                id = cursor.getInt(cursor.getColumnIndex(Mydatabase.Product_id));
+            }while (cursor.moveToNext());
+        }
+    }
+
+    return id;
+}
 
 }

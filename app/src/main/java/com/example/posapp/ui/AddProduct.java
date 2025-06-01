@@ -91,8 +91,8 @@ product_add_btn.setOnClickListener(new View.OnClickListener() {
                 ArrayList<String> barcodes = new ArrayList<>();
                 ArrayList<String> product_name = new ArrayList<>();
                 barcodes = db.getProductbarcode();
-
-                if (barcodes.contains(newproduct.getBarcode())){
+                product_name = db.getProductsName();
+                if (barcodes.contains(newproduct.getBarcode()) || product_name.contains(newproduct.getProduct_name())){
                     throw new RuntimeException();
                 }
                     boolean result = db.addProduct(newproduct);

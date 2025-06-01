@@ -47,8 +47,8 @@ public class Invoice_detalis extends AppCompatActivity {
         client_phone = findViewById(R.id.invoice_detail_client_phone);
         client_store = findViewById(R.id.invoice_detail_client_store);
         bill_date = findViewById(R.id.invoice_detail_bill_date);
-
         back_btn = findViewById(R.id.back_btn);
+        
         back_btn.setOnClickListener(view -> {
            finish();
        });

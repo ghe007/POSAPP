@@ -46,6 +46,11 @@ private OnClickStockItem onClickStockItem;
         return invoices.size();
     }
 
+    public void updatelist(ArrayList<Invoice> list){
+        this.invoices = list;
+        this.notifyDataSetChanged();
+    }
+
     public class invoiceholder extends RecyclerView.ViewHolder {
         TextView tv_invoice_id, tv_invoice_client, tv_invoice_total, tv_invoice_date;
         public invoiceholder(@NonNull View itemView) {

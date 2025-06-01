@@ -48,8 +48,9 @@ private DataBaseControler db;
         });
 
         batck_btn=findViewById(R.id.invoice_toolbar_back_icon);
-        search_invoice=findViewById(R.id.client_search);
+        search_invoice=findViewById(R.id.invoice_search);
         invoice_rv=findViewById(R.id.recyclerView);
+
         db = DataBaseControler.getInstance(this);
         try {
             invoices = new ArrayList<>();
@@ -71,6 +72,40 @@ private DataBaseControler db;
             });
             invoice_rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             invoice_rv.setAdapter(adapter);
+
+            search_invoice.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+
+                    db.open();
+                        invoices = db.searchBillByIdOrTotalOrDate(s);
+                        adapter.updatelist(invoices);
+                    db.close();
+                if (invoices.isEmpty()){
+                    Toast.makeText(ActivityInvoice.this, "فاتورة غير موجودة!", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+                    return true;
+                }
+            });
+
+            search_invoice.setOnCloseListener(new SearchView.OnCloseListener() {
+                @Override
+                public boolean onClose() {
+                    db.open();
+                     invoices = db.getAllBills();
+                    db.close();
+                    adapter.notifyDataSetChanged();
+                    return true;
+                }
+            });
         }catch (Exception e){
             Toast.makeText(this, e.getMessage()+"", Toast.LENGTH_SHORT).show();
         }

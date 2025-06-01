@@ -68,7 +68,6 @@ db = DataBaseControler.getInstance(getBaseContext());
 
 db.open();
     products = db.getAllProductsIntoInventory();
-
 db.close();
 
 if (!(products.isEmpty())) {
@@ -134,5 +133,5 @@ searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 //        products = db.getAllProductsIntoInventory();
 //        db.close();
 //        adapter.updatedata(products);
-//    }
+  // }
 }

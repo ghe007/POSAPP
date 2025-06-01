@@ -8,6 +8,8 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class Mydatabase extends SQLiteAssetHelper {
 
+
+
     private  static  final String db_name = "posm.db";
 
     private static final int vers = 1;

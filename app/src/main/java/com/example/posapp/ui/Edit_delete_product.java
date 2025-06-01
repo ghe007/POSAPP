@@ -24,6 +24,8 @@ import com.journeyapps.barcodescanner.CaptureActivity;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
+import java.util.ArrayList;
+
 public class Edit_delete_product extends AppCompatActivity {
     private TextView back_btn;
     private TextView product_id;
@@ -36,6 +38,7 @@ public class Edit_delete_product extends AppCompatActivity {
     private Button delete_product;
     private Intent recive_id;
     private DataBaseControler db;
+    private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +72,7 @@ public class Edit_delete_product extends AppCompatActivity {
         });
 
        recive_id = getIntent();
-       int id = recive_id.getIntExtra(StockActivity.PRODUCT_ID,-1);
+       id = recive_id.getIntExtra(StockActivity.PRODUCT_ID,-1);
        product_id.setText(String.valueOf(id));
 
        db.open();
@@ -114,9 +117,28 @@ public class Edit_delete_product extends AppCompatActivity {
                       Inventory inventory = new Inventory();
                       inventory.setQuantity(update_quantity);
                       product1.setId(id);
-                       db.updateProduct(product1,inventory.getQuantity());
-                      Toast.makeText(Edit_delete_product.this, "تم تعديل منتج", Toast.LENGTH_SHORT).show();
-                      finish();
+                      ArrayList<String> barcodes = new ArrayList<>();
+                      ArrayList<String> product_name = new ArrayList<>();
+                      int checkID = db.getProductID(product1.getBarcode(),product1.getProduct_name());
+                      
+                      barcodes = db.getProductbarcode();
+                      product_name = db.getProductsName();
+                      try {
+                          if (barcodes.contains(product1.getBarcode()) && product_name.contains(product1.getProduct_name()) && id != checkID){
+                              throw  new RuntimeException();
+                          }else {
+                              db.updateProduct(product1,inventory.getQuantity());
+                              Toast.makeText(Edit_delete_product.this, "تم تعديل منتج", Toast.LENGTH_SHORT).show();
+                              finish();
+                          }
+                      } catch (Exception e) {
+                             if (e instanceof RuntimeException){
+                                 Toast.makeText(Edit_delete_product.this, "هذا المنتج موجود مسبقا!", Toast.LENGTH_SHORT).show();
+                             }
+                      }
+
+                      db.close();
+
                   }
 
 
@@ -142,13 +164,8 @@ public class Edit_delete_product extends AppCompatActivity {
 
     private void onpenBarcodeScaenner(){
         ScanOptions options = new ScanOptions();
-
         options.setPrompt("وجه الكاميرا نحو الباركود");
-
         options.setBeepEnabled(true);
-        options.setOrientationLocked(false);
-
-
         options.setCaptureActivity(CaptureActivity.class);
 
         barcodeLancher.launch(options);

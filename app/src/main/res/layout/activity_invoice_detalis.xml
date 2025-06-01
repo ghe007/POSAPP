@@ -178,40 +178,20 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <View
+        android:id="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="5dp"
         android:layout_height="2dp"
+        android:layout_marginHorizontal="5dp"
         android:background="@color/semi_yello"
-        app:layout_constraintBottom_toBottomOf="@+id/bill_detail_list" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bill_detail_list">
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/edit_delete_btn"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/edit_delete_btn_shape"
-            android:text="حذف الفاتورة"
-            android:textColor="@color/red"
-            android:textStyle="bold" />
-    </LinearLayout>
+        app:layout_constraintBottom_toBottomOf="@+id/bill_detail_list"
+        tools:layout_editor_absoluteX="5dp" />
 
 
     <TextView
         android:id="@+id/invoice_detail_total"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/invoice_border_item"
         android:gravity="center"
@@ -219,9 +199,8 @@
         android:padding="10dp"
         android:text="0.0"
         android:textSize="@dimen/text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
